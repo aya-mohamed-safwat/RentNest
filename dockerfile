@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/RentNest-0.0.1-SNAPSHOT.jar /RentNest.jar
+COPY --from=build /target/RentNest.jar /RentNest.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","RentNest.jar"]
