@@ -4,6 +4,6 @@ RUN mvn clean package
 
 
 FROM openjdk:17-alpine
-COPY --from=build /app/target/*.jar /app/app.jar
+COPY --from=build /target/RentNest-0.0.1-SNAPSHOT.jar /RentNest.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-jar","RentNest.jar"]

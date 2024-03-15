@@ -108,6 +108,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>RentNest</finalName>
 	</build>
 
 </project>
