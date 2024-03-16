@@ -1,4 +1,10 @@
+FROM maven:3.8.4-openjdk-17 AS build
+WORKDIR /RentNest
+COPY . .
+RUN mvn clean install -DskipTests
+
+# Stage 2: Create the final image
 FROM openjdk:17-jdk-alpine
 VOLUME /tmp
-COPY target/*.jar app.jar
+COPY --from=build /RentNest/target/RentNest.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
