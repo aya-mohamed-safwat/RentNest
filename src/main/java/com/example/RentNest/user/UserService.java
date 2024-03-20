@@ -17,15 +17,9 @@ public UserService(UserRepository userRepository){
     this.userRepository=userRepository;
 }
 
-public User getByUserId(Long id) {
-    User getUser = userRepository.getById(id);
-    boolean exist = userRepository.existsById(id);
-    if(!exist){
-        return null;
-    }
-    else {
-        return getUser;
-    }
+    public User getByUserId(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        return userOptional.orElse(null); // Returns null if user is not found
     }
 
 public String addNewUser(UserRequest request){

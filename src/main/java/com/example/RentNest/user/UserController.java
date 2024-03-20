@@ -16,11 +16,13 @@ public class UserController {
     public UserController(UserService userservice) {
         this.userservice = userservice;
     }
-
-    @GetMapping("/getById")
+    @GetMapping("/getById/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) {
-        User msg= userservice.getByUserId(id);
-        return ResponseEntity.ok(msg);
+        User user = userservice.getByUserId(id);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping(path = "/signUp")
@@ -42,7 +44,7 @@ public class UserController {
         return ResponseEntity.ok(msg);
     }
 
-    @PutMapping(path = "/updateUser")
+    @PutMapping(path = "/updateUser/{id}")
     public String updateUser(@PathVariable Long userId,
                              @RequestBody UserRequest request) {
 
