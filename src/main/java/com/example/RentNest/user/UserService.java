@@ -71,7 +71,7 @@ public String deleteUser(Long userId) {
 public String UpdateUser(Long userId, UpdateRequest request) {
     User user =userRepository.getById(userId);
 
-    if(request!=null){
+    if(request.getName()!=null & request.getEmail()!=null & request.getNumber()!=null){
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setNumber(request.getNumber());
