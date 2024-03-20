@@ -17,31 +17,31 @@ public class UserController {
         this.userservice = userservice;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getById")
     public User getById(@PathVariable Long id) {
         return userservice.getByUserId(id);
     }
 
-    @PostMapping
-    public ResponseEntity<?>  SignUp(@RequestBody UserRequest request) {
+    @PostMapping(path = "/signUp")
+    public ResponseEntity<?>  signUp(@RequestBody UserRequest request) {
         String msg= userservice.addNewUser(request);
         return ResponseEntity.ok(msg);
     }
 
 
     @PostMapping (path = "/login")
-    public ResponseEntity<?>  Login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?>  login(@RequestBody LoginRequest loginRequest) {
        String msg= userservice.loginUser(loginRequest);
         return ResponseEntity.ok(msg);
     }
 
-    @DeleteMapping(path = "{userId}")
+    @DeleteMapping(path = "/deleteUser")
     public ResponseEntity<?>  deleteUser(@PathVariable Long userId) {
         String msg=userservice.deleteUser(userId);
         return ResponseEntity.ok(msg);
     }
 
-    @PutMapping(path = "{userId}")
+    @PutMapping(path = "/updateUser")
     public String updateUser(@PathVariable Long userId,
                              @RequestBody UserRequest request) {
 

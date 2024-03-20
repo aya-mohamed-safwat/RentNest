@@ -18,8 +18,14 @@ public UserService(UserRepository userRepository){
 }
 
 public User getByUserId(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Id Doesn't exist"));
+    User getUser = userRepository.getById(id);
+    boolean exist = userRepository.existsById(id);
+    if(!exist){
+        return null;
+    }
+    else {
+        return getUser;
+    }
     }
 
 public String addNewUser(UserRequest request){
