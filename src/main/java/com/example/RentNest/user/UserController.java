@@ -18,8 +18,9 @@ public class UserController {
     }
 
     @GetMapping("/getById")
-    public User getById(@PathVariable Long id) {
-        return userservice.getByUserId(id);
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        User msg= userservice.getByUserId(id);
+        return ResponseEntity.ok(msg);
     }
 
     @PostMapping(path = "/signUp")
