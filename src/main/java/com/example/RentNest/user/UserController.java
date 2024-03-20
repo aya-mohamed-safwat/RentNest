@@ -1,6 +1,7 @@
 package com.example.RentNest.user;
 
 import com.example.RentNest.dto.LoginRequest;
+import com.example.RentNest.dto.UpdateRequest;
 import com.example.RentNest.dto.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ public class UserController {
     public UserController(UserService userservice) {
         this.userservice = userservice;
     }
+
     @GetMapping("/getById/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) {
         User user = userservice.getByUserId(id);
@@ -45,11 +47,12 @@ public class UserController {
     }
 
     @PutMapping(path = "/updateUser/{userId}")
-    public String updateUser(@PathVariable Long userId,
-                             @RequestBody UserRequest request) {
+    public ResponseEntity<?> updateUser(@PathVariable Long userId,
+                             @RequestBody UpdateRequest request) {
 
-        userservice.UpdateUser(userId, request);
-        return "update successfully";
+        String msg= userservice.UpdateUser(userId, request);
+        return ResponseEntity.ok(msg);
+
     }
 
 }

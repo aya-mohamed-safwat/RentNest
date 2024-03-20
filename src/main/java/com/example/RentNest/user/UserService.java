@@ -1,6 +1,7 @@
 package com.example.RentNest.user;
 
 import com.example.RentNest.dto.LoginRequest;
+import com.example.RentNest.dto.UpdateRequest;
 import com.example.RentNest.dto.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public UserService(UserRepository userRepository){
 
     public User getByUserId(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
-        return userOptional.orElse(null); // Returns null if user is not found
+        return userOptional.orElse(null);
     }
 
 public String addNewUser(UserRequest request){
@@ -67,16 +68,20 @@ public String deleteUser(Long userId) {
     }
 
 @Transactional
-public void UpdateUser(Long userId, UserRequest request) {
+public String UpdateUser(Long userId, UpdateRequest request) {
     User user =userRepository.getById(userId);
 
     if(request!=null){
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setNumber(request.getNumber());
+
+        userRepository.save(user);
+        return ("done");
     }
-    userRepository.save(user);
+    return ("name , Email and number is required ");
     }
+
 
 }
 
