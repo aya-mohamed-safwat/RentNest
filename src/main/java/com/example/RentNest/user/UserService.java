@@ -1,12 +1,14 @@
 package com.example.RentNest.user;
 
-import com.example.RentNest.dto.LoginRequest;
-import com.example.RentNest.dto.UpdateRequest;
-import com.example.RentNest.dto.UserRequest;
+import com.example.RentNest.user.dto.LoginRequest;
+import com.example.RentNest.user.dto.UpdateRequest;
+import com.example.RentNest.user.dto.UserRequest;
+import com.example.RentNest.user.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,7 +25,16 @@ public UserService(UserRepository userRepository){
         return userOptional.orElse(null);
     }
 
-public String addNewUser(UserRequest request){
+    public UserResponse getResponseById(Long id) {
+        User user = getByUserId(id);
+        return UserMapper.INSTANCE.map(user);
+    }
+
+    public List<UserResponse> findAllUsers() {
+        return UserMapper.INSTANCE.mapList (userRepository.findAll());
+    }
+
+    public String addNewUser(UserRequest request){
     User user = new User();
     Optional<User> UserByEmail = Optional.ofNullable(userRepository.findByEmail(request.getEmail()));
     if(UserByEmail.isPresent()){
@@ -38,7 +49,7 @@ public String addNewUser(UserRequest request){
     return("Email is created");
 }
 
-public String loginUser (LoginRequest loginRequest) {
+    public String loginUser (LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail());
         if (user != null) {
             if (user.getPassword().equals(loginRequest.getPassword()))
@@ -58,7 +69,7 @@ public String loginUser (LoginRequest loginRequest) {
         }
     }
 
-public String deleteUser(Long userId) {
+    public String deleteUser(Long userId) {
     boolean exist = userRepository.existsById(userId);
     if(!exist){
         return("this Id" +userId+ " does not exist");
@@ -67,8 +78,8 @@ public String deleteUser(Long userId) {
     return("this email is deleted");
     }
 
-@Transactional
-public String UpdateUser(Long userId, UpdateRequest request) {
+    @Transactional
+    public String UpdateUser(Long userId, UpdateRequest request) {
     User user =userRepository.getById(userId);
 
     if(request.getName()!=null & request.getEmail()!=null & request.getNumber()!=null){

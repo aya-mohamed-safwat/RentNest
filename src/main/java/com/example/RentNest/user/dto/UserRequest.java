@@ -1,4 +1,4 @@
-package com.example.RentNest.dto;
+package com.example.RentNest.user.dto;
 
 import lombok.Getter;
 import lombok.Setter;

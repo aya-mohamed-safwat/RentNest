@@ -1,11 +1,14 @@
 package com.example.RentNest.user;
 
-import com.example.RentNest.dto.LoginRequest;
-import com.example.RentNest.dto.UpdateRequest;
-import com.example.RentNest.dto.UserRequest;
+import com.example.RentNest.user.dto.LoginRequest;
+import com.example.RentNest.user.dto.UpdateRequest;
+import com.example.RentNest.user.dto.UserRequest;
+import com.example.RentNest.user.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value="/rentNest/api")
@@ -19,13 +22,17 @@ public class UserController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id) {
-        User user = userservice.getByUserId(id);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(user);
+    public ResponseEntity<UserResponse> getById(@PathVariable Long id) {
+        UserResponse response =userservice.getResponseById(id);
+        return ResponseEntity.ok(response);
     }
+
+    @GetMapping(path ="/getUsers")
+    public  ResponseEntity<List<UserResponse>> getUsers() {
+        List<UserResponse> response =userservice.findAllUsers();
+        return ResponseEntity.ok(response);
+    }
+
 
     @PostMapping(path = "/signUp")
     public ResponseEntity<?>  signUp(@RequestBody UserRequest request) {
@@ -45,6 +52,7 @@ public class UserController {
         String msg=userservice.deleteUser(userId);
         return ResponseEntity.ok(msg);
     }
+
 
     @PutMapping(path = "/updateUser/{userId}")
     public ResponseEntity<?> updateUser(@PathVariable Long userId,
