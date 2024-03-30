@@ -1,5 +1,8 @@
 package com.example.RentNest.user;
 
+import com.example.RentNest.houses.House;
+import com.example.RentNest.houses.HouseMapper;
+import com.example.RentNest.houses.dto.HouseResponse;
 import com.example.RentNest.user.dto.LoginRequest;
 import com.example.RentNest.user.dto.UpdateRequest;
 import com.example.RentNest.user.dto.UserRequest;
@@ -91,6 +94,18 @@ public UserService(UserRepository userRepository){
         return ("done");
     }
     return ("name , Email and number is required ");
+    }
+
+
+    public List<HouseResponse> getUserHouses(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            List<House> house = user.getHouses();
+            return HouseMapper.INSTANCE.mapList(house);
+
+        }
+        return null ;
     }
 
 

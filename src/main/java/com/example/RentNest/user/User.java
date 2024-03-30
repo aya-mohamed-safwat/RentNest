@@ -1,10 +1,13 @@
 package com.example.RentNest.user;
 import ch.qos.logback.core.spi.PropertyContainer;
+import com.example.RentNest.houses.House;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -40,6 +43,9 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<House> houses = new ArrayList<>();
 
     public void setPassword(String password) {
         this.password = password;

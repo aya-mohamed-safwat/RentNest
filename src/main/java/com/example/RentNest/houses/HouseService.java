@@ -2,6 +2,8 @@ package com.example.RentNest.houses;
 
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
+import com.example.RentNest.user.User;
+import com.example.RentNest.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -13,13 +15,17 @@ public class HouseService {
     private final HouseRepository houseRepository;
 
     @Autowired
-    public HouseService(HouseRepository houseRepository){
-        this.houseRepository=houseRepository;
+    private UserRepository userRepository;
+
+
+    @Autowired
+    public HouseService(HouseRepository houseRepository) {
+        this.houseRepository = houseRepository;
     }
 
     public House getHouseById(Long id) {
-        Optional<House> userOptional = houseRepository.findById(id);
-        return userOptional.orElse(null);
+        Optional<House> houseOptional = houseRepository.findById(id);
+        return houseOptional.orElse(null);
     }
 
     public List<HouseResponse> findAllHouses() {
@@ -35,17 +41,36 @@ public class HouseService {
         return HouseMapper.INSTANCE.map(house);
     }
 
-    public String deleteHouse(Long id){
+    public String deleteHouse(Long id) {
         boolean exist = houseRepository.existsById(id);
-        if(!exist){
-            return("this Id" +id+ " does not exist");
+        if (!exist) {
+            return ("this Id" + id + " does not exist");
         }
         houseRepository.deleteById(id);
-        return("this House is deleted");
+        return ("this House is deleted");
 
     }
 
+    public List<HouseResponse> search(String location, double size, double price, int bedroomsNum, int bathroomsNum) {
+        if (location != null || size != 0.0 || price != 0.0 || bedroomsNum != 0 || bathroomsNum != 0) {
+            return HouseMapper.INSTANCE.mapList(houseRepository.
+                    findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
+                    (location, size, price, bedroomsNum, bathroomsNum));
+        } else {
+            return findAllHouses();
 
+        }
+    }
 
-
+    public HouseResponse addNewHouse( House house , Long userId){
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            house.setUser(user);
+            user.getHouses().add(house);
+            houseRepository.save(house);
+            return HouseMapper.INSTANCE.map(house);
+        }
+        return null ;
+    }
 }

@@ -7,11 +7,8 @@ import java.util.List;
 @Repository
 public interface HouseRepository extends JpaRepository<House, Long> {
 
-    List<House> findByLocation(String location);
-    List<House> findByPriceLessThanEqual(double price);
-    List<House> findBySizeLessThanEqual(double size);
-    List<House> findByBedroomsNumLessThanEqual(int bedroomsNum);
-    List<House> findByBathroomsNumLessThanEqual(int bathroomsNum);
-    List<House> findByLocationAndSizeLessThanEqual(String location,double size);
+    List<House> findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
+            (String location,double size,double price,int bedroomsNum,int bathroomsNum);
+
 
 }

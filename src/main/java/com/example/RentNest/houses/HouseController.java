@@ -4,7 +4,6 @@ import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -38,4 +37,20 @@ public class HouseController {
         String msg=houseService.deleteHouse(houseId);
         return ResponseEntity.ok(msg);
 }
+
+    @GetMapping(path ="/searchByFilter")
+    public ResponseEntity<List<HouseResponse>> searchByFilter(@Valid @RequestParam String location,
+                                                              @Valid @RequestParam  double size,
+                                                              @Valid @RequestParam double price,
+                                                              @Valid @RequestParam int bedroomsNum,
+                                                              @Valid @RequestParam int bathroomsNum) {
+        List<HouseResponse> response =houseService.search(location,size,price,bedroomsNum,bathroomsNum);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/addHouse/{userId}")
+    public ResponseEntity<HouseResponse> addHouse(@PathVariable Long userId, @Valid @RequestBody House house){
+        HouseResponse response = houseService.addNewHouse(house , userId);
+        return ResponseEntity.ok(response);
+    }
 }
