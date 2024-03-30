@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class HouseResponse {
+public class HouseRequest {
     private String location;
     private double size;
     private int bedroomsNum;

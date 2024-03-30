@@ -1,7 +1,7 @@
 package com.example.RentNest.houses;
 
+import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-03-29T17:47:48+0200",
+    date = "2024-03-30T11:30:20+0200",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 17.0.10 (Oracle Corporation)"
 )
 @Component
@@ -27,10 +27,6 @@ public class HouseMapperImpl implements HouseMapper {
         house.setSize( request.getSize() );
         house.setBedroomsNum( request.getBedroomsNum() );
         house.setBathroomsNum( request.getBathroomsNum() );
-        List<Image> list = request.getImage();
-        if ( list != null ) {
-            house.setImage( new ArrayList<Image>( list ) );
-        }
         house.setPrice( request.getPrice() );
         house.setPriceNegotiation( request.isPriceNegotiation() );
         house.setAvailability( request.isAvailability() );
@@ -52,10 +48,6 @@ public class HouseMapperImpl implements HouseMapper {
         houseResponse.setSize( entity.getSize() );
         houseResponse.setBedroomsNum( entity.getBedroomsNum() );
         houseResponse.setBathroomsNum( entity.getBathroomsNum() );
-        List<Image> list = entity.getImage();
-        if ( list != null ) {
-            houseResponse.setImage( new ArrayList<Image>( list ) );
-        }
         houseResponse.setPrice( entity.getPrice() );
         houseResponse.setPriceNegotiation( entity.isPriceNegotiation() );
         houseResponse.setAvailability( entity.isAvailability() );
@@ -77,5 +69,22 @@ public class HouseMapperImpl implements HouseMapper {
         }
 
         return list;
+    }
+
+    @Override
+    public void updateEntity(HouseRequest request, House entity) {
+        if ( request == null ) {
+            return;
+        }
+
+        entity.setLocation( request.getLocation() );
+        entity.setSize( request.getSize() );
+        entity.setBedroomsNum( request.getBedroomsNum() );
+        entity.setBathroomsNum( request.getBathroomsNum() );
+        entity.setPrice( request.getPrice() );
+        entity.setPriceNegotiation( request.isPriceNegotiation() );
+        entity.setAvailability( request.isAvailability() );
+        entity.setDescription( request.getDescription() );
+        entity.setCategories( request.getCategories() );
     }
 }

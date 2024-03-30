@@ -1,7 +1,5 @@
 package com.example.RentNest.houses;
 import lombok.*;
-import java.awt.Image;
-import java.util.List;
 import javax.persistence.*;
 
 @Setter
@@ -29,18 +27,14 @@ public class House {
     private String location;
 
     @Column(nullable = false)
-    private int size;
+    private double size;
 
-    @Column(nullable = false)
     private int bedroomsNum;
 
-    @Column(nullable = false)
     private int bathroomsNum;
 
-    private List<Image> image;
-
     @Column(nullable = false)
-    private int price;
+    private double price;
 
     private boolean priceNegotiation;
 
