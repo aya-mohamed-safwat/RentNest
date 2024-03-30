@@ -49,8 +49,8 @@ public class HouseController {
     }
 
     @PostMapping("/addHouse/{userId}")
-    public ResponseEntity<HouseResponse> addHouse(@PathVariable Long userId, @Valid @RequestBody House house){
-        HouseResponse response = houseService.addNewHouse(house , userId);
+    public ResponseEntity<HouseResponse> addHouse(@PathVariable Long userId, @Valid @RequestBody HouseRequest request){
+        HouseResponse response = houseService.addNewHouse(request , userId);
         return ResponseEntity.ok(response);
     }
 }

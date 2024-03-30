@@ -62,7 +62,8 @@ public class HouseService {
         }
     }
 
-    public HouseResponse addNewHouse( House house , Long userId){
+    public HouseResponse addNewHouse( HouseRequest request , Long userId){
+        House house = HouseMapper.INSTANCE.map(request);
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();

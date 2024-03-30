@@ -13,7 +13,7 @@ public interface HouseMapper {
 
     HouseMapper INSTANCE = Mappers.getMapper(HouseMapper.class);
 
-    House map(HouseResponse request);
+    House map(HouseRequest request);
 
     HouseResponse map(House entity);
 
