@@ -15,13 +15,13 @@ import javax.persistence.*;
 public class UniversalHouse {
     @Id
     @SequenceGenerator(
-            name = "House_sequence",
-            sequenceName = "House_sequence",
+            name = "universalHouse_sequence",
+            sequenceName = "universalHouse_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "House_sequence"
+            generator = "universalHouse_sequence"
     )
     @Column(nullable = false)
     private Long universalHouseId;
