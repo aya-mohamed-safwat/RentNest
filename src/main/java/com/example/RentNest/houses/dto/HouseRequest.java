@@ -14,5 +14,5 @@ public class HouseRequest {
     private boolean priceNegotiation;
     private boolean availability;
     private String description;
-    private String categories;
+
 }

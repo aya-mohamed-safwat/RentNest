@@ -1,6 +1,8 @@
 package com.example.RentNest.user;
 import ch.qos.logback.core.spi.PropertyContainer;
 import com.example.RentNest.houses.House;
+import com.example.RentNest.summerHouses.SummerHouse;
+import com.example.RentNest.universalHousing.UniversalHouse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,6 +48,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<House> houses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<SummerHouse> summerHouses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UniversalHouse> universalHouse = new ArrayList<>();
 
     public void setPassword(String password) {
         this.password = password;

@@ -1,5 +1,6 @@
 package com.example.RentNest.user;
 
+import com.example.RentNest.houses.dto.HouseResponse;
 import com.example.RentNest.user.dto.LoginRequest;
 import com.example.RentNest.user.dto.UpdateRequest;
 import com.example.RentNest.user.dto.UserRequest;
@@ -53,7 +54,6 @@ public class UserController {
         return ResponseEntity.ok(msg);
     }
 
-
     @PutMapping(path = "/updateUser/{userId}")
     public ResponseEntity<?> updateUser(@PathVariable Long userId,
                              @RequestBody UpdateRequest request) {
@@ -63,4 +63,9 @@ public class UserController {
 
     }
 
+    @GetMapping(path ="/getHousesOfOwner/{userId}")
+    public  ResponseEntity<List<HouseResponse>> getHousesOfOwner(@PathVariable Long userId) {
+        List<HouseResponse> response =userservice.getUserHouses(userId);
+        return ResponseEntity.ok(response);
+    }
 }

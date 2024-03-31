@@ -15,6 +15,8 @@ public interface HouseMapper {
 
     House map(HouseRequest request);
 
+    House map(HouseResponse request);
+
     HouseResponse map(House entity);
 
     List<HouseResponse> mapList(List<House> entityList);

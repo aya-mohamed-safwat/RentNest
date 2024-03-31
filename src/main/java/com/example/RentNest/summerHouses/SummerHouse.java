@@ -1,28 +1,30 @@
-package com.example.RentNest.houses;
+package com.example.RentNest.summerHouses;
+
 import com.example.RentNest.user.User;
 import lombok.*;
+
 import javax.persistence.*;
 
 @Setter
 @Getter
 @Entity
-@Table (name = "house")
+@Table(name = "summerHouses")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class House {
+public class SummerHouse {
     @Id
     @SequenceGenerator(
-            name = "House_sequence",
-            sequenceName = "House_sequence",
+            name = "SummerHouse_sequence",
+            sequenceName = "SummerHouse_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "House_sequence"
+            generator = "SummerHouse_sequence"
     )
     @Column(nullable = false)
-    private Long houseId;
+    private Long summerHouseId;
 
     @Column(nullable = false)
     private String location;

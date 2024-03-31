@@ -1,6 +1,8 @@
-package com.example.RentNest.houses;
+package com.example.RentNest.universalHousing;
+
 import com.example.RentNest.user.User;
 import lombok.*;
+
 import javax.persistence.*;
 
 @Setter
@@ -10,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class House {
+public class UniversalHouse {
     @Id
     @SequenceGenerator(
             name = "House_sequence",
@@ -22,7 +24,7 @@ public class House {
             generator = "House_sequence"
     )
     @Column(nullable = false)
-    private Long houseId;
+    private Long universalHouseId;
 
     @Column(nullable = false)
     private String location;

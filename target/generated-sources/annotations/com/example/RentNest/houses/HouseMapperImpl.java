@@ -9,11 +9,31 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-03-30T11:30:20+0200",
+    date = "2024-03-31T03:05:16+0200",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 17.0.10 (Oracle Corporation)"
 )
 @Component
 public class HouseMapperImpl implements HouseMapper {
+
+    @Override
+    public House map(HouseRequest request) {
+        if ( request == null ) {
+            return null;
+        }
+
+        House house = new House();
+
+        house.setLocation( request.getLocation() );
+        house.setSize( request.getSize() );
+        house.setBedroomsNum( request.getBedroomsNum() );
+        house.setBathroomsNum( request.getBathroomsNum() );
+        house.setPrice( request.getPrice() );
+        house.setPriceNegotiation( request.isPriceNegotiation() );
+        house.setAvailability( request.isAvailability() );
+        house.setDescription( request.getDescription() );
+
+        return house;
+    }
 
     @Override
     public House map(HouseResponse request) {
@@ -31,7 +51,6 @@ public class HouseMapperImpl implements HouseMapper {
         house.setPriceNegotiation( request.isPriceNegotiation() );
         house.setAvailability( request.isAvailability() );
         house.setDescription( request.getDescription() );
-        house.setCategories( request.getCategories() );
 
         return house;
     }
@@ -52,7 +71,6 @@ public class HouseMapperImpl implements HouseMapper {
         houseResponse.setPriceNegotiation( entity.isPriceNegotiation() );
         houseResponse.setAvailability( entity.isAvailability() );
         houseResponse.setDescription( entity.getDescription() );
-        houseResponse.setCategories( entity.getCategories() );
 
         return houseResponse;
     }
@@ -85,6 +103,5 @@ public class HouseMapperImpl implements HouseMapper {
         entity.setPriceNegotiation( request.isPriceNegotiation() );
         entity.setAvailability( request.isAvailability() );
         entity.setDescription( request.getDescription() );
-        entity.setCategories( request.getCategories() );
     }
 }

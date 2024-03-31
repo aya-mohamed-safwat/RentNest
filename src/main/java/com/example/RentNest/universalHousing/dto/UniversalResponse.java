@@ -1,11 +1,11 @@
-package com.example.RentNest.houses.dto;
+package com.example.RentNest.universalHousing.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class HouseResponse {
+public class UniversalResponse {
     private String location;
     private double size;
     private int bedroomsNum;

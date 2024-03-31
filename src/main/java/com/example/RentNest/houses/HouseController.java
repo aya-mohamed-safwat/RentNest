@@ -27,7 +27,7 @@ public class HouseController {
     }
 
     @PutMapping("updateHouse/{id}")
-    public ResponseEntity<HouseResponse> update(@PathVariable Long id, @Valid @RequestBody HouseRequest request) {
+    public ResponseEntity<HouseResponse> updateHouse(@PathVariable Long id, @Valid @RequestBody HouseRequest request) {
         HouseResponse response = houseService.update(id, request);
         return ResponseEntity.ok(response);
     }
@@ -38,12 +38,12 @@ public class HouseController {
         return ResponseEntity.ok(msg);
 }
 
-    @GetMapping(path ="/searchByFilter")
+    @GetMapping(path ="/searchHousesByFilter")
     public ResponseEntity<List<HouseResponse>> searchByFilter(@Valid @RequestParam String location,
-                                                              @Valid @RequestParam  double size,
-                                                              @Valid @RequestParam double price,
-                                                              @Valid @RequestParam int bedroomsNum,
-                                                              @Valid @RequestParam int bathroomsNum) {
+                                                              @Valid @RequestParam (required = false)  double size,
+                                                              @Valid @RequestParam (required = false) double price,
+                                                              @Valid @RequestParam (required = false) int bedroomsNum,
+                                                              @Valid @RequestParam (required = false) int bathroomsNum) {
         List<HouseResponse> response =houseService.search(location,size,price,bedroomsNum,bathroomsNum);
         return ResponseEntity.ok(response);
     }

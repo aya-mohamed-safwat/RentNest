@@ -1,11 +1,11 @@
-package com.example.RentNest.houses.dto;
+package com.example.RentNest.summerHouses.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class HouseResponse {
+public class SummerResponse {
     private String location;
     private double size;
     private int bedroomsNum;
@@ -14,5 +14,4 @@ public class HouseResponse {
     private boolean priceNegotiation;
     private boolean availability;
     private String description;
-
 }
