@@ -14,5 +14,4 @@ public class HouseResponse {
     private boolean priceNegotiation;
     private boolean availability;
     private String description;
-
 }

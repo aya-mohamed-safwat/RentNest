@@ -1,4 +1,6 @@
 package com.example.RentNest.houses;
+
+import com.example.RentNest.summerHouses.SummerHouse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,4 @@ public interface HouseRepository extends JpaRepository<House, Long> {
 
     List<House> findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
             (String location,double size,double price,int bedroomsNum,int bathroomsNum);
-
-
 }

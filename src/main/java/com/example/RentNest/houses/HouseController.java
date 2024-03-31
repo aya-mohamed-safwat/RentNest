@@ -2,6 +2,9 @@ package com.example.RentNest.houses;
 
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
+import com.example.RentNest.summerHouses.SummerService;
+import com.example.RentNest.summerHouses.dto.SummerRequest;
+import com.example.RentNest.summerHouses.dto.SummerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,14 +35,14 @@ public class HouseController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping(path = "/deleteHouse/{houseId}")
-    public ResponseEntity<?>  deleteHouse(@PathVariable Long houseId) {
-        String msg=houseService.deleteHouse(houseId);
+    @DeleteMapping(path = "/deleteHouse/{summerHouseId}")
+    public ResponseEntity<?>  deleteHouse(@PathVariable Long HouseId) {
+        String msg=houseService.deleteHouse(HouseId);
         return ResponseEntity.ok(msg);
-}
+    }
 
     @GetMapping(path ="/searchHousesByFilter")
-    public ResponseEntity<List<HouseResponse>> searchByFilter(@Valid @RequestParam String location,
+    public ResponseEntity<List<HouseResponse>> searchHousesByFilter(@Valid @RequestParam String location,
                                                               @Valid @RequestParam (required = false)  double size,
                                                               @Valid @RequestParam (required = false) double price,
                                                               @Valid @RequestParam (required = false) int bedroomsNum,

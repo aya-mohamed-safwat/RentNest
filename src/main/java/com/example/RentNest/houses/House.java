@@ -1,12 +1,14 @@
 package com.example.RentNest.houses;
+
 import com.example.RentNest.user.User;
 import lombok.*;
+
 import javax.persistence.*;
 
 @Setter
 @Getter
 @Entity
-@Table (name = "house")
+@Table(name = "Houses")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -22,7 +24,7 @@ public class House {
             generator = "House_sequence"
     )
     @Column(nullable = false)
-    private Long houseId;
+    private Long HouseId;
 
     @Column(nullable = false)
     private String location;

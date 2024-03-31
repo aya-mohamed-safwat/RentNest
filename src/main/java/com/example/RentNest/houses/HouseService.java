@@ -2,34 +2,37 @@ package com.example.RentNest.houses;
 
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
+import com.example.RentNest.summerHouses.SummerHouse;
+import com.example.RentNest.summerHouses.SummerMapper;
+import com.example.RentNest.summerHouses.SummerRepository;
+import com.example.RentNest.summerHouses.dto.SummerRequest;
+import com.example.RentNest.summerHouses.dto.SummerResponse;
 import com.example.RentNest.user.User;
 import com.example.RentNest.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class HouseService {
+ private final HouseRepository houseRepository;
 
-    private final HouseRepository houseRepository;
-
+ @Autowired
+    public HouseService(HouseRepository houseRepository) {
+        this.houseRepository = houseRepository;
+    }
     @Autowired
     private UserRepository userRepository;
 
-
-    @Autowired
-    public HouseService(HouseRepository houseRepository) {
-        this.houseRepository = houseRepository;
+    public List<HouseResponse> findAllHouses() {
+        return HouseMapper.INSTANCE.mapList(houseRepository.findAll());
     }
 
     public House getHouseById(Long id) {
         Optional<House> houseOptional = houseRepository.findById(id);
         return houseOptional.orElse(null);
-    }
-
-    public List<HouseResponse> findAllHouses() {
-        return HouseMapper.INSTANCE.mapList(houseRepository.findAll());
     }
 
     public HouseResponse update(Long id, HouseRequest request) {
@@ -55,7 +58,7 @@ public class HouseService {
         if (location != null || size != 0.0 || price != 0.0 || bedroomsNum != 0 || bathroomsNum != 0) {
             return HouseMapper.INSTANCE.mapList(houseRepository.
                     findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
-                    (location, size, price, bedroomsNum, bathroomsNum));
+                            (location, size, price, bedroomsNum, bathroomsNum));
         } else {
             return findAllHouses();
 

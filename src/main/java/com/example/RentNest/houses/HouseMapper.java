@@ -2,6 +2,9 @@ package com.example.RentNest.houses;
 
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
+import com.example.RentNest.summerHouses.SummerHouse;
+import com.example.RentNest.summerHouses.dto.SummerRequest;
+import com.example.RentNest.summerHouses.dto.SummerResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -11,7 +14,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface HouseMapper {
-
     HouseMapper INSTANCE = Mappers.getMapper(HouseMapper.class);
 
     House map(HouseRequest request);
