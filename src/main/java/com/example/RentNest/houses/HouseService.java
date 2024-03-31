@@ -33,8 +33,8 @@ public class HouseService {
     }
 
     public HouseResponse update(Long id, HouseRequest request) {
-        House house = getHouseById(id);
-        if (house != null) {
+        House house = houseRepository.getById(id);
+        if (request != null) {
             HouseMapper.INSTANCE.updateEntity(request, house);
             house = houseRepository.save(house);
         }

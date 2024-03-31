@@ -34,8 +34,8 @@ public class UniversalService {
     }
 
     public UniversalResponse update(Long id, UniversalRequest request) {
-        UniversalHouse universalHouse = getHouseById(id);
-        if (universalHouse != null) {
+        UniversalHouse universalHouse = universalRepository.getById(id);
+        if (request != null) {
             UniversalMapper.INSTANCE.updateEntity(request, universalHouse);
             universalHouse = universalRepository.save(universalHouse);
         }

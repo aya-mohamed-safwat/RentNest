@@ -3,6 +3,12 @@ package com.example.RentNest.user;
 import com.example.RentNest.houses.House;
 import com.example.RentNest.houses.HouseMapper;
 import com.example.RentNest.houses.dto.HouseResponse;
+import com.example.RentNest.summerHouses.SummerHouse;
+import com.example.RentNest.summerHouses.SummerMapper;
+import com.example.RentNest.summerHouses.dto.SummerResponse;
+import com.example.RentNest.universalHousing.UniversalHouse;
+import com.example.RentNest.universalHousing.UniversalMapper;
+import com.example.RentNest.universalHousing.dto.UniversalResponse;
 import com.example.RentNest.user.dto.LoginRequest;
 import com.example.RentNest.user.dto.UpdateRequest;
 import com.example.RentNest.user.dto.UserRequest;
@@ -104,6 +110,28 @@ public UserService(UserRepository userRepository){
             User user = userOptional.get();
             List<House> house = user.getHouses();
             return HouseMapper.INSTANCE.mapList(house);
+
+        }
+        return null ;
+    }
+
+    public List<SummerResponse> getUserSummer(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            List<SummerHouse> house = user.getSummerHouses();
+            return SummerMapper.INSTANCE.mapList(house);
+
+        }
+        return null ;
+    }
+
+    public List<UniversalResponse> getUserUniversal(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            List<UniversalHouse> house = user.getUniversalHouse();
+            return UniversalMapper.INSTANCE.mapList(house);
 
         }
         return null ;
