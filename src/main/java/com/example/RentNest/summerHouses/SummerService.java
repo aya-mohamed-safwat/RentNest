@@ -31,8 +31,8 @@ public class SummerService {
     }
 
     public SummerResponse update(Long id, SummerRequest request) {
-        SummerHouse house = getHouseById(id);
-        if (house != null) {
+        SummerHouse house = summerRepository.getById(id);
+        if (request != null) {
             SummerMapper.INSTANCE.updateEntity(request, house);
             house = summerRepository.save(house);
         }

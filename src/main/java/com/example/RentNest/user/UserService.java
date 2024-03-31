@@ -97,6 +97,7 @@ public UserService(UserRepository userRepository){
     }
 
 
+
     public List<HouseResponse> getUserHouses(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
