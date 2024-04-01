@@ -8,6 +8,6 @@ import java.util.List;
 @Repository
 public interface SummerRepository extends JpaRepository<SummerHouse, Long> {
 
-    List<SummerHouse> findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
+    List<SummerHouse> findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
             (String location,double size,double price,int bedroomsNum,int bathroomsNum);
 }

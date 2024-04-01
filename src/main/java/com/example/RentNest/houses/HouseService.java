@@ -57,7 +57,7 @@ public class HouseService {
     public List<HouseResponse> search(String location, double size, double price, int bedroomsNum, int bathroomsNum) {
         if (location != null || size != 0.0 || price != 0.0 || bedroomsNum != 0 || bathroomsNum != 0) {
             return HouseMapper.INSTANCE.mapList(houseRepository.
-                    findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
+                    findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
                             (location, size, price, bedroomsNum, bathroomsNum));
         } else {
             return findAllHouses();

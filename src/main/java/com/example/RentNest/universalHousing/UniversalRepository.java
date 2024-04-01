@@ -7,7 +7,7 @@ import java.util.List;
 @Repository
 public interface UniversalRepository extends JpaRepository<UniversalHouse, Long> {
 
-    List<UniversalHouse> findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
+    List<UniversalHouse> findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
             (String location,double size,double price,int bedroomsNum,int bathroomsNum);
 
 

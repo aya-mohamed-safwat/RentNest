@@ -55,7 +55,7 @@ public class UniversalService {
     public List<UniversalResponse> search(String location, double size, double price, int bedroomsNum, int bathroomsNum) {
         if (location != null || size != 0.0 || price != 0.0 || bedroomsNum != 0 || bathroomsNum != 0) {
             return UniversalMapper.INSTANCE.mapList(universalRepository.
-                    findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
+                    findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
                     (location, size, price, bedroomsNum, bathroomsNum));
         } else {
             return findAllHouses();

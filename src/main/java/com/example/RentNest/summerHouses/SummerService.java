@@ -52,7 +52,7 @@ public class SummerService {
     public List<SummerResponse> search(String location, double size, double price, int bedroomsNum, int bathroomsNum) {
         if (location != null || size != 0.0 || price != 0.0 || bedroomsNum != 0 || bathroomsNum != 0) {
             return SummerMapper.INSTANCE.mapList(summerRepository.
-                    findByLocationOrSizeLessThanEqualOrPriceLessThanEqualOrBedroomsNumLessThanEqualOrBathroomsNumLessThanEqual
+                    findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
                             (location, size, price, bedroomsNum, bathroomsNum));
         } else {
             return findAllHouses();
