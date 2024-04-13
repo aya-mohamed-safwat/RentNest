@@ -70,11 +70,11 @@ public UserService(UserRepository userRepository){
                     return "Login Failed";
                 }
             } else {
-                return "Password is Wrong";
+                return "Wrong Password";
             }
         }
         else {
-            return "Email not exist";
+            return "Email does not exist";
         }
     }
 

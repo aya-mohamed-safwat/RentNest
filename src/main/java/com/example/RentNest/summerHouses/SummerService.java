@@ -18,6 +18,7 @@ public class SummerService {
     public SummerService(SummerRepository summerRepository) {
         this.summerRepository = summerRepository;
     }
+
     @Autowired
     private UserRepository userRepository;
 
@@ -25,10 +26,12 @@ public class SummerService {
         return SummerMapper.INSTANCE.mapList(summerRepository.findAll());
     }
 
+
     public SummerHouse getHouseById(Long id) {
         Optional<SummerHouse> houseOptional = summerRepository.findById(id);
         return houseOptional.orElse(null);
     }
+
 
     public SummerResponse update(Long id, SummerRequest request) {
         SummerHouse house = summerRepository.getById(id);
@@ -38,6 +41,7 @@ public class SummerService {
         }
         return SummerMapper.INSTANCE.map(house);
     }
+
 
     public String deleteHouse(Long id) {
         boolean exist = summerRepository.existsById(id);
@@ -59,6 +63,7 @@ public class SummerService {
 
         }
     }
+
 
     public SummerResponse addNewHouse( SummerRequest request , Long userId){
         SummerHouse house = SummerMapper.INSTANCE.map(request);

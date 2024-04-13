@@ -1,6 +1,5 @@
 package com.example.RentNest.houses;
 
-import com.example.RentNest.summerHouses.SummerHouse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

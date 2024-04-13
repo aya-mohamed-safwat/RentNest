@@ -19,6 +19,7 @@ public class SummerController {
     public SummerController(SummerService summerService) {
         this.summerService = summerService;
     }
+    
 
     @GetMapping(path ="/getAllSummerHouses")
     public ResponseEntity<List<SummerResponse>> getSummerHouses() {
@@ -26,17 +27,20 @@ public class SummerController {
         return ResponseEntity.ok(response);
     }
 
+
     @PutMapping("updateSummerHouse/{id}")
     public ResponseEntity<SummerResponse> updateSummerHouse(@PathVariable Long id, @Valid @RequestBody SummerRequest request) {
         SummerResponse response = summerService.update(id, request);
         return ResponseEntity.ok(response);
     }
 
+
     @DeleteMapping(path = "/deleteSummerHouse/{summerHouseId}")
     public ResponseEntity<?>  deleteSummerHouse(@PathVariable Long summerHouseId) {
         String msg=summerService.deleteHouse(summerHouseId);
         return ResponseEntity.ok(msg);
     }
+
 
     @GetMapping(path ="/searchSummerHousesByFilter")
     public ResponseEntity<List<SummerResponse>> searchSummerHousesByFilter(@Valid @RequestParam String location,
@@ -47,6 +51,7 @@ public class SummerController {
         List<SummerResponse> response =summerService.search(location,size,price,bedroomsNum,bathroomsNum);
         return ResponseEntity.ok(response);
     }
+
 
     @PostMapping("/addSummerHouse/{userId}")
     public ResponseEntity<SummerResponse> addSummerHouse(@PathVariable Long userId, @Valid @RequestBody SummerRequest request){
