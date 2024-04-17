@@ -9,4 +9,3 @@ COPY --from=build /RentNest/target/RentNest.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 
-#https://rentnest.onrender.com/swagger-ui/index.html#/
