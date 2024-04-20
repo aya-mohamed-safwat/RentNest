@@ -14,15 +14,8 @@ import javax.persistence.*;
 @ToString
 public class UniversalHouse {
     @Id
-    @SequenceGenerator(
-            name = "universalHouse_sequence",
-            sequenceName = "universalHouse_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "universalHouse_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(nullable = false)
     private Long universalHouseId;
 

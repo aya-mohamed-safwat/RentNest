@@ -14,15 +14,8 @@ import javax.persistence.*;
 @ToString
 public class SummerHouse {
     @Id
-    @SequenceGenerator(
-            name = "SummerHouse_sequence",
-            sequenceName = "SummerHouse_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "SummerHouse_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(nullable = false)
     private Long summerHouseId;
 

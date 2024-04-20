@@ -19,15 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
     @Id
-    @SequenceGenerator(
-            name = "User_sequence",
-            sequenceName = "User_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "User_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(nullable = false)
     private Long id;
 

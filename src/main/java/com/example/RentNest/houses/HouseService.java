@@ -2,11 +2,6 @@ package com.example.RentNest.houses;
 
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
-import com.example.RentNest.summerHouses.SummerHouse;
-import com.example.RentNest.summerHouses.SummerMapper;
-import com.example.RentNest.summerHouses.SummerRepository;
-import com.example.RentNest.summerHouses.dto.SummerRequest;
-import com.example.RentNest.summerHouses.dto.SummerResponse;
 import com.example.RentNest.user.User;
 import com.example.RentNest.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
