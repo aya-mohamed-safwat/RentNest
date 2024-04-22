@@ -14,8 +14,15 @@ import javax.persistence.*;
 @ToString
 public class SummerHouse {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @SequenceGenerator(
+            name = "summ_sequence",
+            sequenceName = "summ_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "summ_sequence"
+    )
     @Column(nullable = false)
     private Long summerHouseId;
 

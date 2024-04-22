@@ -18,7 +18,15 @@ import java.util.List;
 public class House {
     @Id
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "house_sequence",
+            sequenceName = "house_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "house_sequence"
+    )
 
     @Column(nullable = false)
     private Long HouseId;
