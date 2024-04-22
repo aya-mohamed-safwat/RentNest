@@ -13,7 +13,7 @@ public class ImageService {
         this.imageRepository = imageRepository;
     }
 
-    public  String uploadImage(MultipartFile imageFile) throws IOException {
+    public String uploadImage(MultipartFile imageFile) throws IOException {
         var imageToSave = Image.builder()
                 .name(imageFile.getOriginalFilename())
                 .type(imageFile.getContentType())
