@@ -26,8 +26,8 @@ public class HouseService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ImageService imageService;
+//    @Autowired
+//    private ImageService imageService;
 
     public List<HouseResponse> findAllHouses() {
         return HouseMapper.INSTANCE.mapList(houseRepository.findAll());

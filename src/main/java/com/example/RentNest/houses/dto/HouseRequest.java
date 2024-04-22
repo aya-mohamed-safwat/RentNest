@@ -19,5 +19,5 @@ public class HouseRequest {
     private boolean availability;
     private String description;
    // private MultipartFile[] images;
-    private List<MultipartFile> images = new ArrayList<>();
+   // private List<MultipartFile> images = new ArrayList<>();
 }

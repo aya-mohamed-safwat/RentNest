@@ -17,6 +17,6 @@ public class HouseResponse {
     private double price;
     private boolean availability;
     private String description;
-    private List<Image> images = new ArrayList<>();
+   // private List<Image> images = new ArrayList<>();
 
 }
