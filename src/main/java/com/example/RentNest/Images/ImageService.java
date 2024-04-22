@@ -23,4 +23,9 @@ public class ImageService {
         return "file uploaded successfully : " + imageFile.getOriginalFilename();
     }
 
+    public String deleteImage(Long id) {
+        imageRepository.deleteById(id);
+        return ("this image is deleted");
+    }
+
 }

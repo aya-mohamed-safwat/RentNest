@@ -1,5 +1,6 @@
 package com.example.RentNest.houses;
 
+import com.example.RentNest.Images.Image;
 import com.example.RentNest.user.User;
 import lombok.*;
 
@@ -33,8 +34,6 @@ public class House {
     @Column(nullable = false)
     private double price;
 
-    private boolean priceNegotiation;
-
     private boolean availability;
 
     private String description;
@@ -42,4 +41,8 @@ public class House {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 }
