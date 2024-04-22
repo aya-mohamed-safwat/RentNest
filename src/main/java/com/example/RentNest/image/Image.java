@@ -1,30 +1,33 @@
 package com.example.RentNest.image;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
-    @Data
-    @Entity
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Table(name = "Images")
-    public class Image {
+//@Data
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Table(name = "images")
+public class Image {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE)
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-        private String name;
+    private String name;
 
-        private String type;
+    private String contentType;
 
-        @Lob
-        @Type(type = "org.hibernate.type.ImageType")
-        private byte[] imageData;
-    }
+    @Enumerated(EnumType.STRING)
+    private ImageEntityType entityType;
+
+    private Long entityId;
+
+    @Lob
+    @Type(type = "org.hibernate.type.ImageType")
+    private byte[] imageData;
+}
