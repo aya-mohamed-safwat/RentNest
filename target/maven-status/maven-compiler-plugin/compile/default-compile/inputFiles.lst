@@ -1,6 +1,7 @@
 D:\Graduation project\RentNest\src\main\java\com\example\RentNest\houses\dto\HouseRequest.java
 D:\Graduation project\RentNest\src\main\java\com\example\RentNest\user\UserMapper.java
 D:\Graduation project\RentNest\src\main\java\com\example\RentNest\houses\HouseMapper.java
+D:\Graduation project\RentNest\src\main\java\com\example\RentNest\user\dto\LoginResponse.java
 D:\Graduation project\RentNest\src\main\java\com\example\RentNest\houses\HouseController.java
 D:\Graduation project\RentNest\src\main\java\com\example\RentNest\universalHousing\UniversalMapper.java
 D:\Graduation project\RentNest\src\main\java\com\example\RentNest\RentNestApplication.java

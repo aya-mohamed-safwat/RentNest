@@ -32,6 +32,7 @@ com\example\RentNest\summerHouses\SummerMapperImpl.class
 com\example\RentNest\universalHousing\UniversalService.class
 com\example\RentNest\user\dto\UserRequest.class
 com\example\RentNest\universalHousing\dto\UniversalResponse.class
+com\example\RentNest\user\dto\LoginResponse.class
 com\example\RentNest\universalHousing\UniversalMapper.class
 com\example\RentNest\user\UserRepository.class
 com\example\RentNest\houses\HouseMapper.class

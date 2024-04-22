@@ -9,10 +9,7 @@ import com.example.RentNest.summerHouses.dto.SummerResponse;
 import com.example.RentNest.universalHousing.UniversalHouse;
 import com.example.RentNest.universalHousing.UniversalMapper;
 import com.example.RentNest.universalHousing.dto.UniversalResponse;
-import com.example.RentNest.user.dto.LoginRequest;
-import com.example.RentNest.user.dto.UpdateRequest;
-import com.example.RentNest.user.dto.UserRequest;
-import com.example.RentNest.user.dto.UserResponse;
+import com.example.RentNest.user.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +19,12 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-@Autowired
-public UserService(UserRepository userRepository){
-    this.userRepository=userRepository;
-}
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public User getByUserId(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
@@ -40,66 +37,68 @@ public UserService(UserRepository userRepository){
     }
 
     public List<UserResponse> findAllUsers() {
-        return UserMapper.INSTANCE.mapList (userRepository.findAll());
+        return UserMapper.INSTANCE.mapList(userRepository.findAll());
     }
 
-    public String addNewUser(UserRequest request){
-    User user = new User();
-    Optional<User> UserByEmail = Optional.ofNullable(userRepository.findByEmail(request.getEmail()));
-    if(UserByEmail.isPresent()){
-        return("this email is existing");
+    public String addNewUser(UserRequest request) {
+        User user = new User();
+        Optional<User> UserByEmail = Optional.ofNullable(userRepository.findByEmail(request.getEmail()));
+        if (UserByEmail.isPresent()) {
+            return ("this email is existing");
+        }
+        user.setEmail(request.getEmail());
+        user.setName(request.getName());
+        user.setNumber(request.getNumber());
+        user.setNationalId(request.getNationalId());
+        user.setPassword(request.getPassword());
+        userRepository.save(user);
+        return ("Email is created");
     }
-    user.setEmail(request.getEmail());
-    user.setName(request.getName());
-    user.setNumber(request.getNumber());
-    user.setNationalId(request.getNationalId());
-    user.setPassword(request.getPassword());
-    userRepository.save(user);
-    return("Email is created");
-}
 
-    public String loginUser (LoginRequest loginRequest) {
+    public LoginResponse loginUser(LoginRequest loginRequest) {
+        boolean loginSuccess = false;
+        String msg = "";
         User user = userRepository.findByEmail(loginRequest.getEmail());
         if (user != null) {
-            if (user.getPassword().equals(loginRequest.getPassword()))
-            {
+            if (user.getPassword().equals(loginRequest.getPassword())) {
                 Optional<User> getUser = userRepository.findOneByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
                 if (getUser.isPresent()) {
-                    return "Login Success";
+                    loginSuccess = true;
+                    msg = "Login Success";
                 } else {
-                    return "Login Failed";
+                    msg = "Login Failed";
                 }
             } else {
-                return "Wrong Password";
+                msg = "Wrong Password";
             }
+        } else {
+            msg = "Email does not exist";
         }
-        else {
-            return "Email does not exist";
-        }
+        return new LoginResponse(msg, loginSuccess ? UserMapper.INSTANCE.map(user) : null);
     }
 
     public String deleteUser(Long userId) {
-    boolean exist = userRepository.existsById(userId);
-    if(!exist){
-        return("this Id" +userId+ " does not exist");
-    }
-    userRepository.deleteById(userId);
-    return("this email is deleted");
+        boolean exist = userRepository.existsById(userId);
+        if (!exist) {
+            return ("this Id" + userId + " does not exist");
+        }
+        userRepository.deleteById(userId);
+        return ("this email is deleted");
     }
 
     @Transactional
     public String UpdateUser(Long userId, UpdateRequest request) {
-    User user =userRepository.getById(userId);
+        User user = userRepository.getById(userId);
 
-    if(request.getName()!=null & request.getEmail()!=null & request.getNumber()!=null){
-        user.setName(request.getName());
-        user.setEmail(request.getEmail());
-        user.setNumber(request.getNumber());
+        if (request.getName() != null & request.getEmail() != null & request.getNumber() != null) {
+            user.setName(request.getName());
+            user.setEmail(request.getEmail());
+            user.setNumber(request.getNumber());
 
-        userRepository.save(user);
-        return ("done");
-    }
-    return ("name , Email and number is required ");
+            userRepository.save(user);
+            return ("done");
+        }
+        return ("name , Email and number is required ");
     }
 
     public List<HouseResponse> getUserHouses(Long userId) {
@@ -110,7 +109,7 @@ public UserService(UserRepository userRepository){
             return HouseMapper.INSTANCE.mapList(house);
 
         }
-        return null ;
+        return null;
     }
 
     public List<SummerResponse> getUserSummer(Long userId) {
@@ -121,7 +120,7 @@ public UserService(UserRepository userRepository){
             return SummerMapper.INSTANCE.mapList(house);
 
         }
-        return null ;
+        return null;
     }
 
     public List<UniversalResponse> getUserUniversal(Long userId) {
@@ -132,7 +131,7 @@ public UserService(UserRepository userRepository){
             return UniversalMapper.INSTANCE.mapList(house);
 
         }
-        return null ;
+        return null;
     }
 
 
