@@ -3,6 +3,7 @@ package com.example.RentNest.houses.dto;
 import com.example.RentNest.Images.Image;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,7 +18,5 @@ public class HouseRequest {
     private double price;
     private boolean availability;
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "image_id")
-    private Image image;
+    MultipartFile[] images;
 }

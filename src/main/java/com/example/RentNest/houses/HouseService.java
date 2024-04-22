@@ -1,12 +1,17 @@
 package com.example.RentNest.houses;
 
+import com.example.RentNest.Images.Image;
+import com.example.RentNest.Images.ImageService;
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
 import com.example.RentNest.user.User;
 import com.example.RentNest.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +25,9 @@ public class HouseService {
     }
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ImageService imageService;
 
     public List<HouseResponse> findAllHouses() {
         return HouseMapper.INSTANCE.mapList(houseRepository.findAll());
@@ -62,6 +70,17 @@ public class HouseService {
 
     public HouseResponse addNewHouse( HouseRequest request , Long userId){
         House house = HouseMapper.INSTANCE.map(request);
+        List<Image> listImages = new ArrayList<>();
+
+        try {
+            for (MultipartFile image : request.getImages()) {
+                Image addImage = imageService.uploadImage(image);
+                listImages.add(addImage);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        house.setImages(listImages);
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();

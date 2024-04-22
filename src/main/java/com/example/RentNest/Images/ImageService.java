@@ -13,14 +13,14 @@ public class ImageService {
         this.imageRepository = imageRepository;
     }
 
-    public String uploadImage(MultipartFile imageFile) throws IOException {
+    public Image uploadImage(MultipartFile imageFile) throws IOException {
         var imageToSave = Image.builder()
                 .name(imageFile.getOriginalFilename())
                 .type(imageFile.getContentType())
                 .imageData(ImageUtils.compressImage(imageFile.getBytes()))
                 .build();
-        imageRepository.save(imageToSave);
-        return "file uploaded successfully : " + imageFile.getOriginalFilename();
+       return imageRepository.save(imageToSave);
+
     }
 
     public String deleteImage(Long id) {

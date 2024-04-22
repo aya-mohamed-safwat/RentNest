@@ -5,6 +5,8 @@ import com.example.RentNest.user.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -42,7 +44,7 @@ public class House {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "image_id")
-    private Image image;
+    private List<Image> images = new ArrayList<>();
 }
