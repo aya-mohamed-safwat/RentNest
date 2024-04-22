@@ -1,7 +1,6 @@
 package com.example.RentNest.houses;
 
-import com.example.RentNest.Images.ImageRepository;
-import com.example.RentNest.Images.ImageService;
+
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
 import com.example.RentNest.user.User;

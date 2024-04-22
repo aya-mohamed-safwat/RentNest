@@ -1,15 +1,17 @@
-package com.example.RentNest.Images;
+package com.example.RentNest.image;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
 @Service
-public class ImageService {
+public class ImageSevice {
+    @Autowired
     private final ImageRepository imageRepository;
 
-    public ImageService(ImageRepository imageRepository) {
+    public ImageSevice(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
 
@@ -22,10 +24,4 @@ public class ImageService {
         imageRepository.save(imageToSave);
         return "file uploaded successfully : " + imageFile.getOriginalFilename();
     }
-
-    public String deleteImage(Long id) {
-        imageRepository.deleteById(id);
-        return ("this image is deleted");
-    }
-
 }

@@ -1,6 +1,5 @@
 package com.example.RentNest.houses.dto;
 
-import com.example.RentNest.Images.Image;
 import lombok.Getter;
 import lombok.Setter;
 

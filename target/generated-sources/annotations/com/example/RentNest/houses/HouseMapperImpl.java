@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-15T21:51:45+0200",
+    date = "2024-04-22T19:17:36+0200",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 17.0.10 (Oracle Corporation)"
 )
 @Component
@@ -28,7 +28,6 @@ public class HouseMapperImpl implements HouseMapper {
         house.setBedroomsNum( request.getBedroomsNum() );
         house.setBathroomsNum( request.getBathroomsNum() );
         house.setPrice( request.getPrice() );
-        house.setPriceNegotiation( request.isPriceNegotiation() );
         house.setAvailability( request.isAvailability() );
         house.setDescription( request.getDescription() );
 
@@ -48,7 +47,6 @@ public class HouseMapperImpl implements HouseMapper {
         house.setBedroomsNum( request.getBedroomsNum() );
         house.setBathroomsNum( request.getBathroomsNum() );
         house.setPrice( request.getPrice() );
-        house.setPriceNegotiation( request.isPriceNegotiation() );
         house.setAvailability( request.isAvailability() );
         house.setDescription( request.getDescription() );
 
@@ -68,7 +66,6 @@ public class HouseMapperImpl implements HouseMapper {
         houseResponse.setBedroomsNum( entity.getBedroomsNum() );
         houseResponse.setBathroomsNum( entity.getBathroomsNum() );
         houseResponse.setPrice( entity.getPrice() );
-        houseResponse.setPriceNegotiation( entity.isPriceNegotiation() );
         houseResponse.setAvailability( entity.isAvailability() );
         houseResponse.setDescription( entity.getDescription() );
 
@@ -100,7 +97,6 @@ public class HouseMapperImpl implements HouseMapper {
         entity.setBedroomsNum( request.getBedroomsNum() );
         entity.setBathroomsNum( request.getBathroomsNum() );
         entity.setPrice( request.getPrice() );
-        entity.setPriceNegotiation( request.isPriceNegotiation() );
         entity.setAvailability( request.isAvailability() );
         entity.setDescription( request.getDescription() );
     }

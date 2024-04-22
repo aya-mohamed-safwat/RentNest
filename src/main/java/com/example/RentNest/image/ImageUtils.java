@@ -1,4 +1,4 @@
-package com.example.RentNest.Images;
+package com.example.RentNest.image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
