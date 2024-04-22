@@ -14,7 +14,15 @@ import javax.persistence.*;
 @Table(name = "Images")
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "image",
+            sequenceName = "image",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "image"
+    )
     private Long id;
 
     private String name;
