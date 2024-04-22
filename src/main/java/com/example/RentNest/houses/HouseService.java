@@ -1,6 +1,6 @@
 package com.example.RentNest.houses;
 
-import com.example.RentNest.Images.Image;
+import com.example.RentNest.Images.ImageRepository;
 import com.example.RentNest.Images.ImageService;
 import com.example.RentNest.houses.dto.HouseRequest;
 import com.example.RentNest.houses.dto.HouseResponse;
@@ -70,17 +70,17 @@ public class HouseService {
 
     public HouseResponse addNewHouse( HouseRequest request , Long userId){
         House house = HouseMapper.INSTANCE.map(request);
-        List<Image> listImages = new ArrayList<>();
+    //    List<String> listImages = new ArrayList<>();
 
-        try {
-            for (MultipartFile image : request.getImages()) {
-                Image addImage = imageService.uploadImage(image);
-                listImages.add(addImage);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        house.setImages(listImages);
+       // try {
+         //   for (MultipartFile image : request.getImages()) {
+           //     String addImage = imageService.uploadImage(image);
+             //   listImages.add(addImage);
+            //}
+        //} catch (IOException e) {
+          //  e.printStackTrace();
+       // }
+        //house.setImages(listImages);
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
