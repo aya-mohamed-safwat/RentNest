@@ -19,12 +19,12 @@ public class ImageSevice {
         this.imageRepository = imageRepository;
     }
 
-    public String uploadImage(MultipartFile imageFile) throws IOException {
+    public String uploadImage(MultipartFile imageFile, String entityType, Long entityId) throws IOException {
         var imageToSave = Image.builder()
                 .name(UUID.randomUUID() + "." + imageFile.getContentType().split("/")[1])
                 .contentType(imageFile.getContentType())
-                .entityType(ImageEntityType.HOUSE)
-                .entityId(1L)
+                .entityType(ImageEntityType.valueOf(entityType))
+                .entityId(entityId)
                 .imageData(ImageUtils.compressImage(imageFile.getBytes()))
                 .build();
         Image image = imageRepository.save(imageToSave);
