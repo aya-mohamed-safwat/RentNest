@@ -1,5 +1,8 @@
 package com.example.RentNest.summerHouses;
 
+import com.example.RentNest.houses.House;
+import com.example.RentNest.houses.HouseMapper;
+import com.example.RentNest.houses.dto.HouseResponse;
 import com.example.RentNest.summerHouses.dto.SummerRequest;
 import com.example.RentNest.summerHouses.dto.SummerResponse;
 import com.example.RentNest.user.User;
@@ -71,11 +74,16 @@ public class SummerService {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             house.setUser(user);
-            user.getSummerHouses().add(house);
             summerRepository.save(house);
             return SummerMapper.INSTANCE.map(house);
         }
         return null ;
+    }
+
+    public List<SummerResponse> getUserHouses(Long userId) {
+        List<SummerHouse> house = summerRepository.findByUserId(userId);
+        return SummerMapper.INSTANCE.mapList(house);
+
     }
 
 

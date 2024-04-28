@@ -53,4 +53,10 @@ public class UniversalController {
         UniversalResponse response = universalService.addNewHouse(request , userId);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/getUserUniversalHouse/{userId}")
+    public ResponseEntity<List<UniversalResponse>> getUserUniversalHouse(@PathVariable Long userId){
+        List<UniversalResponse> response = universalService.getUserHouses(userId);
+        return ResponseEntity.ok(response);
+    }
 }

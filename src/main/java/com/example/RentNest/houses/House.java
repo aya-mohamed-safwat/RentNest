@@ -50,7 +50,4 @@ public class House {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @OneToMany
-//    @JoinColumn(name = "image_id")
-//    private List<Image> images = new ArrayList<>();
 }

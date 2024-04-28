@@ -2,11 +2,6 @@ package com.example.RentNest.houses.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Setter
 @Getter
@@ -18,6 +13,5 @@ public class HouseRequest {
     private double price;
     private boolean availability;
     private String description;
-   // private MultipartFile[] images;
-   // private List<MultipartFile> images = new ArrayList<>();
+
 }

@@ -1,5 +1,8 @@
 package com.example.RentNest.universalHousing;
 
+import com.example.RentNest.summerHouses.SummerHouse;
+import com.example.RentNest.summerHouses.SummerMapper;
+import com.example.RentNest.summerHouses.dto.SummerResponse;
 import com.example.RentNest.universalHousing.dto.UniversalRequest;
 import com.example.RentNest.universalHousing.dto.UniversalResponse;
 import com.example.RentNest.user.User;
@@ -69,10 +72,15 @@ public class UniversalService {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             universalHouse.setUser(user);
-            user.getUniversalHouse().add(universalHouse);
             universalRepository.save(universalHouse);
             return UniversalMapper.INSTANCE.map(universalHouse);
         }
         return null ;
+    }
+
+    public List<UniversalResponse> getUserHouses(Long userId) {
+        List<UniversalHouse> house = universalRepository.findByUserId(userId);
+        return UniversalMapper.INSTANCE.mapList(house);
+
     }
 }

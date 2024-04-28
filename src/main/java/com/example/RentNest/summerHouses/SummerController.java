@@ -1,5 +1,6 @@
 package com.example.RentNest.summerHouses;
 
+import com.example.RentNest.houses.dto.HouseResponse;
 import com.example.RentNest.summerHouses.dto.SummerRequest;
 import com.example.RentNest.summerHouses.dto.SummerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,10 @@ public class SummerController {
         SummerResponse response = summerService.addNewHouse(request , userId);
         return ResponseEntity.ok(response);
     }
+    @PostMapping("/getUserSummerHouse/{userId}")
+    public ResponseEntity<List<SummerResponse>> getUserSummerHouse(@PathVariable Long userId){
+        List<SummerResponse> response = summerService.getUserHouses(userId);
+        return ResponseEntity.ok(response);
+    }
+
 }

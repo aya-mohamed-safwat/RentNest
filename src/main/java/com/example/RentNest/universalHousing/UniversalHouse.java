@@ -39,8 +39,6 @@ public class UniversalHouse {
     @Column(nullable = false)
     private double price;
 
-    private boolean priceNegotiation;
-
     private boolean availability;
 
     private String description;

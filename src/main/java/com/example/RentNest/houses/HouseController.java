@@ -32,7 +32,7 @@ public class HouseController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping(path = "/deleteHouse/{summerHouseId}")
+    @DeleteMapping(path = "/deleteHouse/{HouseId}")
     public ResponseEntity<?>  deleteHouse(@PathVariable Long HouseId) {
         String msg=houseService.deleteHouse(HouseId);
         return ResponseEntity.ok(msg);
@@ -51,6 +51,12 @@ public class HouseController {
     @PostMapping("/addHouse/{userId}")
     public ResponseEntity<HouseResponse> addHouse(@PathVariable Long userId, @Valid @RequestBody HouseRequest request){
         HouseResponse response = houseService.addNewHouse(request , userId);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/getUserHouse/{userId}")
+    public ResponseEntity<List<HouseResponse>> getUserHouse(@PathVariable Long userId){
+       List<HouseResponse> response = houseService.getUserHouses(userId);
         return ResponseEntity.ok(response);
     }
 }

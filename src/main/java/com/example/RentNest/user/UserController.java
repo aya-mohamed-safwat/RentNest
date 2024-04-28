@@ -61,21 +61,4 @@ public class UserController {
 
     }
 
-    @GetMapping(path = "/getHousesOfOwner/{userId}")
-    public ResponseEntity<List<HouseResponse>> getHousesOfOwner(@PathVariable Long userId) {
-        List<HouseResponse> response = userservice.getUserHouses(userId);
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping(path = "/getSummerOfOwner/{userId}")
-    public ResponseEntity<List<SummerResponse>> getSummerOfOwner(@PathVariable Long userId) {
-        List<SummerResponse> response = userservice.getUserSummer(userId);
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping(path = "/getUniversalOfOwner/{userId}")
-    public ResponseEntity<List<UniversalResponse>> getUniversalOfOwner(@PathVariable Long userId) {
-        List<UniversalResponse> response = userservice.getUserUniversal(userId);
-        return ResponseEntity.ok(response);
-    }
 }

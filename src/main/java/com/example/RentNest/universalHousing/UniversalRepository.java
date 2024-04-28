@@ -11,4 +11,5 @@ public interface UniversalRepository extends JpaRepository<UniversalHouse, Long>
             (String location,double size,double price,int bedroomsNum,int bathroomsNum);
 
 
+    List<UniversalHouse> findByUserId(Long userId);
 }

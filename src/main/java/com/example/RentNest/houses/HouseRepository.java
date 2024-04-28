@@ -10,4 +10,7 @@ public interface HouseRepository extends JpaRepository<House, Long> {
 
     List<House> findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
             (String location,double size,double price,int bedroomsNum,int bathroomsNum);
+
+    List<House> findByUserId(Long userId);
 }
+

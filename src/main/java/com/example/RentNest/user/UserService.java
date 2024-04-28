@@ -1,14 +1,6 @@
 package com.example.RentNest.user;
 
-import com.example.RentNest.houses.House;
-import com.example.RentNest.houses.HouseMapper;
-import com.example.RentNest.houses.dto.HouseResponse;
-import com.example.RentNest.summerHouses.SummerHouse;
-import com.example.RentNest.summerHouses.SummerMapper;
-import com.example.RentNest.summerHouses.dto.SummerResponse;
-import com.example.RentNest.universalHousing.UniversalHouse;
-import com.example.RentNest.universalHousing.UniversalMapper;
-import com.example.RentNest.universalHousing.dto.UniversalResponse;
+
 import com.example.RentNest.user.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,48 +82,16 @@ public class UserService {
     public String UpdateUser(Long userId, UpdateRequest request) {
         User user = userRepository.getById(userId);
 
-        if (request.getName() != null & request.getEmail() != null & request.getNumber() != null) {
+        if (request.getName() != null & request.getEmail() != null & request.getNumber() != null & request.getPassword() != null ) {
             user.setName(request.getName());
             user.setEmail(request.getEmail());
             user.setNumber(request.getNumber());
+            user.setPassword(request.getPassword());
 
             userRepository.save(user);
             return ("done");
         }
         return ("name , Email and number is required ");
-    }
-
-    public List<HouseResponse> getUserHouses(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            List<House> house = user.getHouses();
-            return HouseMapper.INSTANCE.mapList(house);
-
-        }
-        return null;
-    }
-
-    public List<SummerResponse> getUserSummer(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            List<SummerHouse> house = user.getSummerHouses();
-            return SummerMapper.INSTANCE.mapList(house);
-
-        }
-        return null;
-    }
-
-    public List<UniversalResponse> getUserUniversal(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            List<UniversalHouse> house = user.getUniversalHouse();
-            return UniversalMapper.INSTANCE.mapList(house);
-
-        }
-        return null;
     }
 
 
