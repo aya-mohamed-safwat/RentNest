@@ -1,10 +1,15 @@
 package com.example.RentNest.image;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import java.util.zip.DataFormatException;
 
@@ -31,5 +36,10 @@ public class ImageSevice {
 
     public Image getByName(String name) throws DataFormatException, IOException {
         return imageRepository.findByName(name).orElseThrow();
+    }
+
+    public List<Image> getByEntityId(Long entityId,ImageEntityType entityType) throws DataFormatException, IOException {
+        return  imageRepository.findByEntityIdAndEntityType(entityId , entityType).orElseThrow();
+
     }
 }
