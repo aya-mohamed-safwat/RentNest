@@ -1,8 +1,5 @@
 package com.example.RentNest.universalHousing;
 
-import com.example.RentNest.summerHouses.SummerHouse;
-import com.example.RentNest.summerHouses.SummerMapper;
-import com.example.RentNest.summerHouses.dto.SummerResponse;
 import com.example.RentNest.universalHousing.dto.UniversalRequest;
 import com.example.RentNest.universalHousing.dto.UniversalResponse;
 import com.example.RentNest.user.User;

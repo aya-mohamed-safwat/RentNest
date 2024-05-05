@@ -40,7 +40,7 @@ public class ImageController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf(image.getContentType()));
 
-        return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
+       return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
     }
 
     @GetMapping("/viewByEntityId/{entityId}/{entityType}")

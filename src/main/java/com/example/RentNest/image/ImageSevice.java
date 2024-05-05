@@ -31,7 +31,7 @@ public class ImageSevice {
                 .imageData(ImageUtils.compressImage(imageFile.getBytes()))
                 .build();
         Image image = imageRepository.save(imageToSave);
-        return "file uploaded successfully : " + image.getName();
+        return image.getName();
     }
 
     public Image getByName(String name) throws DataFormatException, IOException {
