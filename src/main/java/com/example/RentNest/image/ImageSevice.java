@@ -1,8 +1,7 @@
 package com.example.RentNest.image;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,6 +38,7 @@ public class ImageSevice {
         return  imageRepository.findByEntityIdAndEntityType(entityId , entityType).orElseThrow();
     }
 
+    @Transactional
     public boolean deleteImageByName(String name) {
         Optional<Image> imageOptional = imageRepository.findByName(name);
         if (imageOptional.isPresent()) {

@@ -53,8 +53,8 @@ public class ImageController {
         return ResponseEntity.ok(imagesLink);
     }
 
-    @DeleteMapping("/deleteImage")
-    public ResponseEntity<String> deleteImage(@RequestParam String name) {
+    @DeleteMapping("/deleteImage/{name}")
+    public ResponseEntity<String> deleteImage(@PathVariable String name) {
         boolean isDeleted = imageService.deleteImageByName(name);
         if (isDeleted) {
             return new ResponseEntity<>("Image deleted successfully", HttpStatus.OK);
