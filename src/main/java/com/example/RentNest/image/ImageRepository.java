@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Long> {
     Optional<Image> findByName(String name);
-
+    void deleteByName(String housesName);
     Optional<List<Image>> findByEntityIdAndEntityType(Long entityId, ImageEntityType entityType);
 }

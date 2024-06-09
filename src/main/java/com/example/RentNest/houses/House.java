@@ -27,7 +27,7 @@ public class House {
     )
 
     @Column(nullable = false)
-    private Long HouseId;
+    private Long houseId;
 
     @Column(nullable = false)
     private String location;

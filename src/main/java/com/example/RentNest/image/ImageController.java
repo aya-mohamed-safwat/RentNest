@@ -52,4 +52,14 @@ public class ImageController {
 
         return ResponseEntity.ok(imagesLink);
     }
+
+    @DeleteMapping("/deleteImage")
+    public ResponseEntity<String> deleteImage(@RequestParam String name) {
+        boolean isDeleted = imageService.deleteImageByName(name);
+        if (isDeleted) {
+            return new ResponseEntity<>("Image deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Image not found", HttpStatus.NOT_FOUND);
+        }
+    }
 }

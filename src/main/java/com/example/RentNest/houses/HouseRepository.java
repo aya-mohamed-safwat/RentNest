@@ -8,9 +8,12 @@ import java.util.List;
 @Repository
 public interface HouseRepository extends JpaRepository<House, Long> {
 
-    List<House> findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
+    List<House> findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqualOrderByHouseIdAsc
             (String location,double size,double price,int bedroomsNum,int bathroomsNum);
 
-    List<House> findByUserId(Long userId);
+
+    List<House> findAllByOrderByHouseIdAsc();
+
+    List<House> findByUserIdOrderByHouseIdAsc(Long userId);
 }
 

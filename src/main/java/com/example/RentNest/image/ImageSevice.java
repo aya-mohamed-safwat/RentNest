@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.zip.DataFormatException;
 
 @Service
@@ -40,6 +37,14 @@ public class ImageSevice {
 
     public List<Image> getByEntityId(Long entityId,ImageEntityType entityType) throws DataFormatException, IOException {
         return  imageRepository.findByEntityIdAndEntityType(entityId , entityType).orElseThrow();
+    }
 
+    public boolean deleteImageByName(String name) {
+        Optional<Image> imageOptional = imageRepository.findByName(name);
+        if (imageOptional.isPresent()) {
+            imageRepository.deleteByName(name);
+            return true;
+        }
+        return false;
     }
 }

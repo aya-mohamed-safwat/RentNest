@@ -22,7 +22,7 @@ public class HouseService {
     private UserRepository userRepository;
 
     public List<HouseResponse> findAllHouses() {
-        return HouseMapper.INSTANCE.mapList(houseRepository.findAll());
+        return HouseMapper.INSTANCE.mapList(houseRepository.findAllByOrderByHouseIdAsc());
     }
 
     public House getHousesById(Long userId) {
@@ -52,7 +52,7 @@ public class HouseService {
     public List<HouseResponse> search(String location, double size, double price, int bedroomsNum, int bathroomsNum) {
         if (location != null || size != 0.0 || price != 0.0 || bedroomsNum != 0 || bathroomsNum != 0) {
             return HouseMapper.INSTANCE.mapList(houseRepository.
-                    findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqual
+                    findByLocationAndSizeLessThanEqualAndPriceLessThanEqualAndBedroomsNumLessThanEqualAndBathroomsNumLessThanEqualOrderByHouseIdAsc
                             (location, size, price, bedroomsNum, bathroomsNum));
         } else {
             return findAllHouses();
@@ -73,7 +73,7 @@ public class HouseService {
     }
 
     public List<HouseResponse> getUserHouses(Long userId) {
-            List<House> house = houseRepository.findByUserId(userId);
+            List<House> house = houseRepository.findByUserIdOrderByHouseIdAsc(userId);
             return HouseMapper.INSTANCE.mapList(house);
 
     }

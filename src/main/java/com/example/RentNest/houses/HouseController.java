@@ -54,7 +54,7 @@ public class HouseController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/getUserHouse/{userId}")
+    @GetMapping("/getUserHouse/{userId}")
     public ResponseEntity<List<HouseResponse>> getUserHouse(@PathVariable Long userId){
        List<HouseResponse> response = houseService.getUserHouses(userId);
         return ResponseEntity.ok(response);
