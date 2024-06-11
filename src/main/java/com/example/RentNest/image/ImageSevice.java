@@ -38,6 +38,10 @@ public class ImageSevice {
         return  imageRepository.findByEntityIdAndEntityType(entityId , entityType).orElseThrow();
     }
 
+    public List<Image> getByEntityIdAndUserId(Long entityId,ImageEntityType entityType,Long userId) throws DataFormatException, IOException {
+        return  imageRepository.findByEntityIdAndEntityTypeAndUserId(entityId , entityType , userId).orElseThrow();
+    }
+
     @Transactional
     public boolean deleteImageByName(String name) {
         Optional<Image> imageOptional = imageRepository.findByName(name);

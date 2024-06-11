@@ -53,6 +53,16 @@ public class ImageController {
         return ResponseEntity.ok(imagesLink);
     }
 
+    @GetMapping("/viewByEntityIdAndUserId/{entityId}/{entityType}/{userId}")
+    public ResponseEntity<?> viewByEntityIdAndUserId(@PathVariable Long entityId ,@PathVariable ImageEntityType entityType , @PathVariable Long userId) throws IOException, DataFormatException {
+
+        List<Image> images = imageService.getByEntityIdAndUserId(entityId,entityType,userId);
+        List<String> imagesLink = images.stream().map(image -> "https://rentnest.onrender.com/image/" +image.getName())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(imagesLink);
+    }
+
     @DeleteMapping("/deleteImage/{name}")
     public ResponseEntity<String> deleteImage(@PathVariable String name) {
         boolean isDeleted = imageService.deleteImageByName(name);

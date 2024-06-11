@@ -1,5 +1,6 @@
 package com.example.RentNest.image;
 
+import com.example.RentNest.user.User;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
@@ -30,4 +31,9 @@ public class Image {
     @Lob
     @Type(type = "org.hibernate.type.ImageType")
     private byte[] imageData;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }
