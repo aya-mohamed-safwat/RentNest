@@ -19,6 +19,8 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Long userId;
+
     private String name;
 
     private String contentType;
@@ -32,8 +34,5 @@ public class Image {
     @Type(type = "org.hibernate.type.ImageType")
     private byte[] imageData;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
 }

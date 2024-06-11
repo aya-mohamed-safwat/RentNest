@@ -25,7 +25,7 @@ public class ImageController {
 
     @PostMapping
     public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file,
-                                         @RequestParam("userId") User userId,
+                                         @RequestParam("userId") Long userId,
                                          @RequestParam("entity_type") String entityType,
                                          @RequestParam("entity_id") Long entityId) throws IOException {
         String uploadImage = imageService.uploadImage(file, entityType, entityId,  userId);
