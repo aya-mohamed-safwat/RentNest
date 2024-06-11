@@ -26,7 +26,7 @@ public class SummerService {
     private UserRepository userRepository;
 
     public List<SummerResponse> findAllHouses() {
-        return SummerMapper.INSTANCE.mapList(summerRepository.findAll());
+        return SummerMapper.INSTANCE.mapList(summerRepository.findAllByOrderBySummerHouseIdAsc());
     }
 
 
@@ -81,7 +81,7 @@ public class SummerService {
     }
 
     public List<SummerResponse> getUserHouses(Long userId) {
-        List<SummerHouse> house = summerRepository.findByUserId(userId);
+        List<SummerHouse> house = summerRepository.findByUserIdOrderBySummerHouseIdAsc(userId);
         return SummerMapper.INSTANCE.mapList(house);
 
     }

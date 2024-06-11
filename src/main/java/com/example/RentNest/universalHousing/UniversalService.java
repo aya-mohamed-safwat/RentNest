@@ -30,7 +30,7 @@ public class UniversalService {
     }
 
     public List<UniversalResponse> findAllHouses() {
-        return UniversalMapper.INSTANCE.mapList(universalRepository.findAll());
+        return UniversalMapper.INSTANCE.mapList(universalRepository.findAllByOrderByUniversalHouseIdAsc());
     }
 
     public UniversalResponse update(Long id, UniversalRequest request) {
@@ -76,7 +76,7 @@ public class UniversalService {
     }
 
     public List<UniversalResponse> getUserHouses(Long userId) {
-        List<UniversalHouse> house = universalRepository.findByUserId(userId);
+        List<UniversalHouse> house = universalRepository.findByUserIdOrderByUniversalHouseIdAsc(userId);
         return UniversalMapper.INSTANCE.mapList(house);
 
     }

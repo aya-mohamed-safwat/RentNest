@@ -4,5 +4,6 @@ public enum ImageEntityType {
     USER_AVATAR,
     HOUSE,
     SUMMER_HOUSE,
-    UNIVERSAL_HOUSE
+    UNIVERSAL_HOUSE,
+    CAPITAL_HOUSE
 }
