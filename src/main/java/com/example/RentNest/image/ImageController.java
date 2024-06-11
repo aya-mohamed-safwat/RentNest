@@ -1,5 +1,6 @@
 package com.example.RentNest.image;
 
+import com.example.RentNest.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,10 @@ public class ImageController {
 
     @PostMapping
     public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file,
+                                         @RequestParam("userId") User userId,
                                          @RequestParam("entity_type") String entityType,
                                          @RequestParam("entity_id") Long entityId) throws IOException {
-        String uploadImage = imageService.uploadImage(file, entityType, entityId);
+        String uploadImage = imageService.uploadImage(file, entityType, entityId,  userId);
         return ResponseEntity.status(HttpStatus.OK).body(uploadImage);
     }
 

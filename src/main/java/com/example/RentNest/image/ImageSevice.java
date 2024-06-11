@@ -1,5 +1,6 @@
 package com.example.RentNest.image;
 
+import com.example.RentNest.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,14 @@ public class ImageSevice {
         this.imageRepository = imageRepository;
     }
 
-    public String uploadImage(MultipartFile imageFile, String entityType, Long entityId) throws IOException {
+    public String uploadImage(MultipartFile imageFile, String entityType, Long entityId , User userId ) throws IOException {
         var imageToSave = Image.builder()
                 .name(UUID.randomUUID() + "." + imageFile.getContentType().split("/")[1])
                 .contentType(imageFile.getContentType())
                 .entityType(ImageEntityType.valueOf(entityType))
                 .entityId(entityId)
                 .imageData(ImageUtils.compressImage(imageFile.getBytes()))
+                .user(userId)
                 .build();
         Image image = imageRepository.save(imageToSave);
         return image.getName();
