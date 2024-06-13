@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 public class CapitalHouseResponse {
     private User user;
-    private Long HouseId;
+    private Long capitalHouseId;
     private String location;
     private double size;
     private int bedroomsNum;
