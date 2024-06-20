@@ -49,7 +49,7 @@ public class ImageController {
     public ResponseEntity<?> viewByEntityId(@PathVariable Long entityId ,@PathVariable ImageEntityType entityType) throws IOException, DataFormatException {
 
         List<Image> images = imageService.getByEntityId(entityId,entityType);
-        List<String> imagesLink = images.stream().map(image -> "https://rentnest.onrender.com/image/" +image.getName())
+        List<String> imagesLink = images.stream().map(image -> "https://rentnestapi.onrender.com/image/" +image.getName())
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(imagesLink);
@@ -59,7 +59,7 @@ public class ImageController {
     public ResponseEntity<?> viewByEntityIdAndUserId(@PathVariable Long entityId ,@PathVariable ImageEntityType entityType , @PathVariable Long userId) throws IOException, DataFormatException {
 
         List<Image> images = imageService.getByEntityIdAndUserId(entityId,entityType,userId);
-        List<String> imagesLink = images.stream().map(image -> "https://rentnest.onrender.com/image/" +image.getName())
+        List<String> imagesLink = images.stream().map(image -> "https://rentnestapi.onrender.com/image/" +image.getName())
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(imagesLink);
